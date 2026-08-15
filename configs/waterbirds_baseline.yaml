@@ -1,0 +1,38 @@
+﻿seed: 0
+data_dir: F:/Waterbirds-repair-selection/data/waterbirds
+output_dir: F:/Waterbirds-repair-selection/outputs/baseline_seed0
+torch_cache_dir: F:/Waterbirds-repair-selection/data/torch_cache
+
+model:
+  architecture: resnet50
+  pretrained_weights: IMAGENET1K_V2
+  num_classes: 2
+
+training:
+  epochs: 10
+  batch_size: 64
+  num_workers: 4
+  optimizer: SGD
+  learning_rate: 0.001
+  momentum: 0.9
+  weight_decay: 0.0001
+  scheduler: none
+  amp: true
+  device: auto
+  selection_metric: overall_accuracy
+
+preprocessing:
+  train:
+    random_resized_crop: 224
+    random_horizontal_flip: 0.5
+    interpolation: bilinear
+    normalize_mean: [0.485, 0.456, 0.406]
+    normalize_std: [0.229, 0.224, 0.225]
+  evaluation:
+    resize: 232
+    center_crop: 224
+    interpolation: bilinear
+    normalize_mean: [0.485, 0.456, 0.406]
+    normalize_std: [0.229, 0.224, 0.225]
+
+
